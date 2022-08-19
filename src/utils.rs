@@ -42,17 +42,13 @@ pub fn sort_vector_rev(slice: &[f64]) -> Vec<f64> {
 
 /// Reindexes a vector given the ranks
 #[must_use]
-pub fn reindex(slice: &[f64], ranks: &[usize]) -> Vec<f64> 
-{
+pub fn reindex(slice: &[f64], ranks: &[usize]) -> Vec<f64> {
     ranks.iter().map(|x| slice[*x]).collect()
 }
 
 #[cfg(test)]
 mod testing {
-    use super::{
-        argsort, rank, argsort_rev,
-        sort_vector, sort_vector_rev, reindex
-    };
+    use super::{argsort, argsort_rev, rank, reindex, sort_vector, sort_vector_rev};
 
     #[test]
     fn test_argsort() {
