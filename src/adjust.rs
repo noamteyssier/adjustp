@@ -4,6 +4,7 @@ use crate::{
     benjamini_yekutieli::BenjaminiYekutieli
 };
 
+#[derive(Copy, Clone)]
 pub enum Procedure {
     Bonferroni,
     BenjaminiHochberg,
