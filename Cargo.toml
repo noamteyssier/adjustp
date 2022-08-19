@@ -2,6 +2,12 @@
 name = "adjustp"
 version = "0.1.0"
 edition = "2021"
+description = "A crate to handle different p-value adjustments"
+license = "MIT"
+documentation = "https://docs.rs/adjustp"
+repository = "https://github.com/noamteyssier/adjustp"
+keywords = ["statistics"]
+categories = ["science"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
