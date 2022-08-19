@@ -4,7 +4,7 @@ use crate::{
 };
 
 /// Define which adjustment procedure to use.
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub enum Procedure {
     /// Performs the Bonferroni Correction
     Bonferroni,
