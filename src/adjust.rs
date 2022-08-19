@@ -15,15 +15,6 @@ pub enum Procedure {
 
     /// Performs the Benjamini-Yekutieli Double-Step Correction
     BenjaminiYekutieli,
-
-    /// Shorthand for the Benjamini-Hochberg method
-    BH,
-
-    /// Shorthand for the Benjamini-Yekutieli method
-    BY,
-
-    /// Shorthand for the Benjamini-Hochberg method
-    FDR
 }
 
 /// Performs the adjustment procedure on a slice of floats.
@@ -33,9 +24,9 @@ pub fn adjust(pvalues: &[f64], method: Procedure) -> Vec<f64> {
     match method {
         Procedure::Bonferroni => 
             Bonferroni::adjust_slice(pvalues),
-        Procedure::BenjaminiHochberg | Procedure::BH | Procedure::FDR => 
+        Procedure::BenjaminiHochberg => 
             BenjaminiHochberg::adjust_slice(pvalues),
-        Procedure::BenjaminiYekutieli | Procedure::BY => 
+        Procedure::BenjaminiYekutieli => 
             BenjaminiYekutieli::adjust_slice(pvalues)
     }
 }
