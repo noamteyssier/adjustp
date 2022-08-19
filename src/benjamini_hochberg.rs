@@ -1,16 +1,21 @@
 use std::ops::Mul;
 use crate::utils::{rank_rev, reindex, sort_vector_rev};
 
+/// Performs the Benjamini-Hochberg step-up procedure
 pub struct BenjaminiHochberg {
     num_elements: f64,
     current_max: f64
 }
 
 impl BenjaminiHochberg {
-    #[must_use] pub fn new(num_elements: f64) -> Self {
+    /// Creates a new instance of BenjaminiHochberg
+    #[must_use] 
+    pub fn new(num_elements: f64) -> Self {
         Self { num_elements, current_max: 1. }
     }
 
+    /// Calculates the adjusted pvalue given the pvalue and the rank. 
+    /// Keep in mind that this function is not deterministic and may give different qvalues for the same call of pvalue depending on the internal state (i.e. if the current max has changed).
     pub fn adjust(&mut self, pvalue: f64, rank: usize) -> f64 {
         let qvalue = pvalue.mul(self.num_elements / rank as f64)
             .min(self.current_max).min(1.0);
@@ -18,7 +23,13 @@ impl BenjaminiHochberg {
         qvalue
     }
 
-    #[must_use] pub fn adjust_slice(slice: &[f64]) -> Vec<f64> {
+    /// Performs the procedure on a slice of floats. 
+    /// 
+    /// This first sorts the pvalues in a descending order.
+    /// Then performs the correction using the ascending order ranks.
+    /// Finally it reindexes the array to return it in the same order as provided.
+    #[must_use] 
+    pub fn adjust_slice(slice: &[f64]) -> Vec<f64> {
         if slice.is_empty() { return Vec::new() }
 
         let mut method = Self::new(slice.len() as f64);

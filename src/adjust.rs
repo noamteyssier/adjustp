@@ -4,17 +4,32 @@ use crate::{
     benjamini_yekutieli::BenjaminiYekutieli
 };
 
+/// Define which adjustment procedure to use.
 #[derive(Copy, Clone)]
 pub enum Procedure {
+    /// Performs the Bonferroni Correction
     Bonferroni,
+
+    /// Performs the Benjamini-Hochberg Single-Step Correction
     BenjaminiHochberg,
+
+    /// Performs the Benjamini-Yekutieli Double-Step Correction
     BenjaminiYekutieli,
+
+    /// Shorthand for the Benjamini-Hochberg method
     BH,
+
+    /// Shorthand for the Benjamini-Yekutieli method
     BY,
+
+    /// Shorthand for the Benjamini-Hochberg method
     FDR
 }
 
-#[must_use] pub fn adjust(pvalues: &[f64], method: Procedure) -> Vec<f64> {
+/// Performs the adjustment procedure on a slice of floats.
+/// This does not require the pvalues to be sorted and will perform the necessary sorting if required.
+#[must_use] 
+pub fn adjust(pvalues: &[f64], method: Procedure) -> Vec<f64> {
     match method {
         Procedure::Bonferroni => 
             Bonferroni::adjust_slice(pvalues),
