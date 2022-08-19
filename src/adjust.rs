@@ -13,7 +13,7 @@ pub enum Procedure {
     FDR
 }
 
-pub fn adjust(pvalues: &[f64], method: Procedure) -> Vec<f64> {
+#[must_use] pub fn adjust(pvalues: &[f64], method: Procedure) -> Vec<f64> {
     match method {
         Procedure::Bonferroni => 
             Bonferroni::adjust_slice(pvalues),

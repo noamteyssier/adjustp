@@ -4,15 +4,15 @@ pub struct Bonferroni {
     num_elements: f64
 }
 impl Bonferroni {
-    pub fn new(num_elements: f64) -> Self {
+    #[must_use] pub fn new(num_elements: f64) -> Self {
         Self { num_elements }
     }
 
-    pub fn adjust(&self, pvalue: f64) -> f64 {
+    #[must_use] pub fn adjust(&self, pvalue: f64) -> f64 {
         pvalue.mul(self.num_elements).min(1.)
     }
 
-    pub fn adjust_slice(slice: &[f64]) -> Vec<f64> {
+    #[must_use] pub fn adjust_slice(slice: &[f64]) -> Vec<f64> {
         let b = Self::new(slice.len() as f64);
         slice.iter().map(|x| b.adjust(*x)).collect()
     }
