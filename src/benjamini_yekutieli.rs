@@ -9,7 +9,7 @@ pub struct BenjaminiYekutieli {
 
 impl BenjaminiYekutieli {
     #[must_use] pub fn new(num_elements: f64) -> Self {
-        let cumulative = (1..num_elements as usize + 1)
+        let cumulative = (1..=num_elements as usize)
             .fold(0.0, |acc, x| acc + (1.0 / x as f64));
 
         Self {
