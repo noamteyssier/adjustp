@@ -8,8 +8,8 @@ pub struct BenjaminiYekutieli {
 }
 
 impl BenjaminiYekutieli {
-    pub fn new(num_elements: f64) -> Self {
-        let cumulative = (1..num_elements as usize + 1)
+    #[must_use] pub fn new(num_elements: f64) -> Self {
+        let cumulative = (1..=num_elements as usize)
             .fold(0.0, |acc, x| acc + (1.0 / x as f64));
 
         Self {
@@ -26,7 +26,7 @@ impl BenjaminiYekutieli {
         qvalue
     }
 
-    pub fn adjust_slice(slice: &[f64]) -> Vec<f64> {
+    #[must_use] pub fn adjust_slice(slice: &[f64]) -> Vec<f64> {
         if slice.is_empty() { return Vec::new() }
 
         let mut method = Self::new(slice.len() as f64);

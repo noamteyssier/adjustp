@@ -4,6 +4,7 @@ use crate::{
     benjamini_yekutieli::BenjaminiYekutieli
 };
 
+#[derive(Copy, Clone)]
 pub enum Procedure {
     Bonferroni,
     BenjaminiHochberg,
@@ -13,7 +14,7 @@ pub enum Procedure {
     FDR
 }
 
-pub fn adjust(pvalues: &[f64], method: Procedure) -> Vec<f64> {
+#[must_use] pub fn adjust(pvalues: &[f64], method: Procedure) -> Vec<f64> {
     match method {
         Procedure::Bonferroni => 
             Bonferroni::adjust_slice(pvalues),

@@ -7,7 +7,7 @@ pub struct BenjaminiHochberg {
 }
 
 impl BenjaminiHochberg {
-    pub fn new(num_elements: f64) -> Self {
+    #[must_use] pub fn new(num_elements: f64) -> Self {
         Self { num_elements, current_max: 1. }
     }
 
@@ -18,7 +18,7 @@ impl BenjaminiHochberg {
         qvalue
     }
 
-    pub fn adjust_slice(slice: &[f64]) -> Vec<f64> {
+    #[must_use] pub fn adjust_slice(slice: &[f64]) -> Vec<f64> {
         if slice.is_empty() { return Vec::new() }
 
         let mut method = Self::new(slice.len() as f64);

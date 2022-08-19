@@ -26,21 +26,21 @@ pub fn rank_rev<T: PartialOrd>(slice: &[T]) -> Vec<usize>
     argsort_rev(&order)
 }
 
-pub fn sort_vector(slice: &[f64]) -> Vec<f64> 
+#[must_use] pub fn sort_vector(slice: &[f64]) -> Vec<f64> 
 {
     let mut sorted_vec = slice.to_vec();
     sorted_vec.sort_by(|a, b| a.partial_cmp(b).unwrap());
     sorted_vec
 }
 
-pub fn sort_vector_rev(slice: &[f64]) -> Vec<f64>
+#[must_use] pub fn sort_vector_rev(slice: &[f64]) -> Vec<f64>
 {
     let mut sorted_vec = slice.to_vec();
     sorted_vec.sort_by(|a, b| b.partial_cmp(a).unwrap());
     sorted_vec
 }
 
-pub fn reindex(slice: &[f64], ranks: &[usize]) -> Vec<f64> 
+#[must_use] pub fn reindex(slice: &[f64], ranks: &[usize]) -> Vec<f64> 
 {
     ranks.iter().map(|x| slice[*x]).collect()
 }
