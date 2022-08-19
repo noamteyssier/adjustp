@@ -1,39 +1,32 @@
 /// Returns the indices which could be used to sort the vector in ascending order
-pub fn argsort<T: PartialOrd>(slice: &[T]) -> Vec<usize>
-{
+pub fn argsort<T: PartialOrd>(slice: &[T]) -> Vec<usize> {
     let mut order = (0..slice.len()).collect::<Vec<usize>>();
-    order.sort_by(|a, b| 
-        slice[*a].partial_cmp(&slice[*b]).unwrap()
-        );
+    order.sort_by(|a, b| slice[*a].partial_cmp(&slice[*b]).unwrap());
     order
 }
 
 /// Returns the indices which could be used to sort the vector in descending order
-pub fn argsort_rev<T: PartialOrd>(slice: &[T]) -> Vec<usize>
-{
+pub fn argsort_rev<T: PartialOrd>(slice: &[T]) -> Vec<usize> {
     let order = argsort(slice);
     let max = order.iter().max().unwrap();
     order.iter().map(|x| max - x).collect()
 }
 
 /// Returns the ranks of the vector.        
-pub fn rank<T: PartialOrd>(slice: &[T]) -> Vec<usize>
-{
+pub fn rank<T: PartialOrd>(slice: &[T]) -> Vec<usize> {
     let order = argsort(slice);
     argsort(&order)
 }
 
 /// Returns the ranks of the vector in reverse order.
-pub fn rank_rev<T: PartialOrd>(slice: &[T]) -> Vec<usize>
-{
+pub fn rank_rev<T: PartialOrd>(slice: &[T]) -> Vec<usize> {
     let order = argsort(slice);
     argsort_rev(&order)
 }
 
 /// Sorts a vector in ascending order
 #[must_use]
-pub fn sort_vector(slice: &[f64]) -> Vec<f64> 
-{
+pub fn sort_vector(slice: &[f64]) -> Vec<f64> {
     let mut sorted_vec = slice.to_vec();
     sorted_vec.sort_by(|a, b| a.partial_cmp(b).unwrap());
     sorted_vec
@@ -41,8 +34,7 @@ pub fn sort_vector(slice: &[f64]) -> Vec<f64>
 
 /// Sorts a vector in descending order
 #[must_use]
-pub fn sort_vector_rev(slice: &[f64]) -> Vec<f64>
-{
+pub fn sort_vector_rev(slice: &[f64]) -> Vec<f64> {
     let mut sorted_vec = slice.to_vec();
     sorted_vec.sort_by(|a, b| b.partial_cmp(a).unwrap());
     sorted_vec
@@ -89,7 +81,6 @@ mod testing {
         let ranks = rank(&floats);
         assert_eq!(ranks, vec![2, 1, 0, 3]);
     }
-
 
     #[test]
     fn test_sort_vector() {

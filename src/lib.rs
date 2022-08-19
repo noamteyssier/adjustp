@@ -39,7 +39,6 @@
 //! assert_eq!(qvalues, vec![0.5708333333333333, 0.7611111111111111, 0.8562500, 0.91333333333333333, 0.5708333333333333]);
 //! ```
 
-
 /// Bonferroni Correction
 pub mod bonferroni;
 
