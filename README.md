@@ -1,14 +1,16 @@
 # adjustp
 
 # Summary
-This is a crate to perform pvalue adjustments and is inspired by the R function `p.adjust`.
-There are currently only three methods available: `Bonferroni`, `BenjaminiHochberg`, and
-`BenjaminiYekutieli`.
+This is a crate to perform pvalue adjustments for multiple hypothesis tests and is inspired by the R function `p.adjust`. 
+There are currently only three methods available: `Bonferroni`, `BenjaminiHochberg`, and `BenjaminiYekutieli`.
 
-This crate gives a single interface for each of these and does not expect the p-values to be
-presorted before calculating.
+This crate gives a single interface for each of these and does not expect the p-values to be presorted before calculating.
 
 # Usage
+
+The main interface for the tests is through the `adjust` function, which takes a slice of `f64` and a `Procedure`.
+If you are using `ndarray` you can use this easily with the `.as_slice()` function.
+
 
 ## Basic Usage
 Here's an example for a `Bonferroni` correction.
