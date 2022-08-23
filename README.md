@@ -2,9 +2,10 @@
 
 # Summary
 This is a crate to perform pvalue adjustments for multiple hypothesis tests and is inspired by the R function `p.adjust`. 
-There are currently only three methods available: `Bonferroni`, `BenjaminiHochberg`, and `BenjaminiYekutieli`.
 
-This crate gives a single interface for each of these and does not expect the p-values to be presorted before calculating.
+There are currently only three methods available: Bonferroni, Benjamini-Hochberg, and Benjamini-Yekutieli.
+
+This crate gives a single interface for each of these multiple hypothesis corrections and does not expect the p-values to be presorted before calculating.
 
 # Usage
 
