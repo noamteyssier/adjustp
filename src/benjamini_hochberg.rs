@@ -73,10 +73,18 @@ mod testing {
     }
 
     #[test]
-    fn example_adjust() {
+    fn example_adjust_f64() {
         let mut b = BenjaminiHochberg::<f64>::new(100);
         assert_eq!(b.adjust(0.001, 1), 0.1);
         assert_eq!(b.adjust(0.001, 2), 0.05);
         assert_eq!(b.adjust(0.001, 3), 0.03333333333333333);
+    }
+
+    #[test]
+    fn example_adjust_f32() {
+        let mut b = BenjaminiHochberg::<f32>::new(100);
+        assert_eq!(b.adjust(0.001, 1), 0.1);
+        assert_eq!(b.adjust(0.001, 2), 0.05);
+        assert_eq!(b.adjust(0.001, 3), 0.033333335);
     }
 }
