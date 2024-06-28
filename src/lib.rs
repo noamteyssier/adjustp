@@ -36,7 +36,7 @@
 //!
 //! let pvalues = vec![0.1, 0.2, 0.3, 0.4, 0.1];
 //! let qvalues = adjust(&pvalues, Procedure::BenjaminiYekutieli);
-//! assert_eq!(qvalues, vec![0.5708333333333333, 0.7611111111111111, 0.8562500, 0.91333333333333333, 0.5708333333333333]);
+//! assert_eq!(qvalues, vec![0.5708333333333333, 0.7611111111111112, 0.8562500, 0.91333333333333333, 0.5708333333333333]);
 //! ```
 
 /// Bonferroni Correction
