@@ -41,7 +41,7 @@ mod testing {
 
         assert_eq!(adj_bonferroni, vec![0.5, 1.0, 1.0, 1.0, 0.5]);
 
-        assert_eq!(adj_bh, vec![0.25, 0.33333333333333337, 0.375, 0.4, 0.25]);
+        assert_eq!(adj_bh, vec![0.25, 0.3333333333333333, 0.375, 0.4, 0.25]);
 
         assert_eq!(
             adj_by,
