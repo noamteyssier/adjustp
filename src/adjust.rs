@@ -2,6 +2,8 @@ use crate::{
     benjamini_hochberg::BenjaminiHochberg, benjamini_yekutieli::BenjaminiYekutieli,
     bonferroni::Bonferroni,
 };
+use num_traits::{Float, FromPrimitive};
+use std::iter::Sum;
 
 /// Define which adjustment procedure to use.
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
@@ -19,7 +21,7 @@ pub enum Procedure {
 /// Performs the adjustment procedure on a slice of floats.
 /// This does not require the pvalues to be sorted and will perform the necessary sorting if required.
 #[must_use]
-pub fn adjust(pvalues: &[f64], method: Procedure) -> Vec<f64> {
+pub fn adjust<T: Float + FromPrimitive + Sum>(pvalues: &[T], method: Procedure) -> Vec<T> {
     match method {
         Procedure::Bonferroni => Bonferroni::adjust_slice(pvalues),
         Procedure::BenjaminiHochberg => BenjaminiHochberg::adjust_slice(pvalues),
