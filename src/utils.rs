@@ -1,7 +1,9 @@
+use num_traits::Float;
+
 /// Returns the indices which could be used to sort the vector in ascending order
 pub fn argsort<T: PartialOrd>(slice: &[T]) -> Vec<usize> {
-    let mut order = (0..slice.len()).collect::<Vec<usize>>();
-    order.sort_by(|a, b| slice[*a].partial_cmp(&slice[*b]).unwrap());
+    let mut order: Vec<_> = (0..slice.len()).collect();
+    order.sort_unstable_by(|&a, &b| slice[a].partial_cmp(&slice[b]).unwrap());
     order
 }
 
@@ -12,13 +14,13 @@ pub fn argsort_rev<T: PartialOrd>(slice: &[T]) -> Vec<usize> {
     order.iter().map(|x| max - x).collect()
 }
 
-/// Returns the ranks of the vector.        
+/// Returns the ranks of the vector
 pub fn rank<T: PartialOrd>(slice: &[T]) -> Vec<usize> {
     let order = argsort(slice);
     argsort(&order)
 }
 
-/// Returns the ranks of the vector in reverse order.
+/// Returns the ranks of the vector in reverse order
 pub fn rank_rev<T: PartialOrd>(slice: &[T]) -> Vec<usize> {
     let order = argsort(slice);
     argsort_rev(&order)
@@ -26,24 +28,24 @@ pub fn rank_rev<T: PartialOrd>(slice: &[T]) -> Vec<usize> {
 
 /// Sorts a vector in ascending order
 #[must_use]
-pub fn sort_vector(slice: &[f64]) -> Vec<f64> {
+pub fn sort_vector<T: Float>(slice: &[T]) -> Vec<T> {
     let mut sorted_vec = slice.to_vec();
-    sorted_vec.sort_by(|a, b| a.partial_cmp(b).unwrap());
+    sorted_vec.sort_unstable_by(|a, b| a.partial_cmp(b).unwrap());
     sorted_vec
 }
 
 /// Sorts a vector in descending order
 #[must_use]
-pub fn sort_vector_rev(slice: &[f64]) -> Vec<f64> {
+pub fn sort_vector_rev<T: Float>(slice: &[T]) -> Vec<T> {
     let mut sorted_vec = slice.to_vec();
-    sorted_vec.sort_by(|a, b| b.partial_cmp(a).unwrap());
+    sorted_vec.sort_unstable_by(|a, b| b.partial_cmp(a).unwrap());
     sorted_vec
 }
 
 /// Reindexes a vector given the ranks
 #[must_use]
-pub fn reindex(slice: &[f64], ranks: &[usize]) -> Vec<f64> {
-    ranks.iter().map(|x| slice[*x]).collect()
+pub fn reindex<T: Copy>(slice: &[T], ranks: &[usize]) -> Vec<T> {
+    ranks.iter().map(|&x| slice[x]).collect()
 }
 
 #[cfg(test)]

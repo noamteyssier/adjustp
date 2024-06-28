@@ -1,6 +1,6 @@
 [package]
 name = "adjustp"
-version = "0.1.5"
+version = "0.1.6"
 edition = "2021"
 description = "A crate to handle different p-value adjustments"
 license = "MIT"
@@ -12,3 +12,4 @@ categories = ["science"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+num-traits = "0.2.19"
